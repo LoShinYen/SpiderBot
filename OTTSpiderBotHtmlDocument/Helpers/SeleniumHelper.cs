@@ -51,11 +51,11 @@ namespace OTTSpiderBotHtmlDocument.Helpers
             }
         }
 
-        public async Task WaitForPageLoadComplete()
+        public async Task WaitForPageLoadCompleteAsync()
         {
             new WebDriverWait(_driver, TimeSpan.FromSeconds(_waitSeconds)).Until(
                 d => ((IJavaScriptExecutor)d).ExecuteScript("return document.readyState").Equals("complete"));
-            await ScrollDownByPortions(700,10);
+            await ScrollDownByPortionsAsync(700,10);
         }
 
         public string GetPageSource()
@@ -68,7 +68,7 @@ namespace OTTSpiderBotHtmlDocument.Helpers
         /// </summary>
         /// <param name="pixelsToScroll">像素</param>
         /// <param name="numberOfPortions">次數</param>
-        public async Task ScrollDownByPortions(int pixelsToScroll, int numberOfPortions)
+        public async Task ScrollDownByPortionsAsync(int pixelsToScroll, int numberOfPortions)
         {
             try
             {
