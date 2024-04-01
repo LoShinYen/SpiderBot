@@ -21,7 +21,7 @@ class Program
                 {
                     selenium.NavigateTo(platform.Url);
 
-                    await selenium.WaitForPageLoadCompleteAsync();
+                    await selenium.WaitForPageLoadCompleteAsync(platform.RequiresExtendedLoading);
 
                     var pageSource = selenium.GetPageSource();
 

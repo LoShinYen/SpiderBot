@@ -12,5 +12,7 @@
         public string Name { get; set; } = string.Empty;
         public string Url { get; set; } = string.Empty;
         public string SubFolder { get; set; } = string.Empty;
+
+        public bool RequiresExtendedLoading { get; set; } = false;
     }
 }

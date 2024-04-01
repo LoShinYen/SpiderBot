@@ -51,11 +51,18 @@ namespace OTTSpiderBotHtmlDocument.Helpers
             }
         }
 
-        public async Task WaitForPageLoadCompleteAsync()
+        public async Task WaitForPageLoadCompleteAsync(bool requiresExtendedLoading)
         {
             new WebDriverWait(_driver, TimeSpan.FromSeconds(_waitSeconds)).Until(
                 d => ((IJavaScriptExecutor)d).ExecuteScript("return document.readyState").Equals("complete"));
-            await ScrollDownByPortionsAsync(700,10);
+            if (requiresExtendedLoading)
+            {
+                await ScrollDownByPortionsAsync(1000, 20);
+            }
+            else
+            { 
+                await ScrollDownByPortionsAsync(700, 10);
+            }
         }
 
         public string GetPageSource()
