@@ -13,14 +13,21 @@ namespace OTTSpiderBotHtmlDocument.Helpers
         public SeleniumHelper(int waitSeconds = 10, bool headless = false)
         {
             _waitSeconds = waitSeconds;
-            var driverService = ChromeDriverService.CreateDefaultService();
+            //var chromeDriverPath = AppDomain.CurrentDomain.BaseDirectory;
+            //string driverPath = Path.Combine(chromeDriverPath, "chromedriver.exe");
+            //var driverService = ChromeDriverService.CreateDefaultService(chromeDriverPath);
             var options = new ChromeOptions();
+            options.AddUserProfilePreference("profile.default_content_setting_values.notifications", 2);
+            options.AddUserProfilePreference("profile.default_content_setting_values.geolocation", 2); // 禁用地理位置請求
+            options.AddUserProfilePreference("profile.default_content_setting_values.media_stream_mic", 2); // 禁用麥克風存取請求
+            options.AddUserProfilePreference("profile.default_content_setting_values.media_stream_camera", 2); // 禁用攝像頭存取請求
             options.PageLoadStrategy = PageLoadStrategy.Eager;
             if (headless)
             {
                 options.AddArguments("--headless");
             }
-            _driver = new ChromeDriver(driverService, options);
+            //_driver = new ChromeDriver(driverService, options);
+            _driver = new ChromeDriver(options);
             _driver.Manage().Window.Size = new System.Drawing.Size(1024, 824);
             _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(_waitSeconds));
         }
