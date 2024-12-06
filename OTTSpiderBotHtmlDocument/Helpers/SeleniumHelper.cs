@@ -13,9 +13,9 @@ namespace OTTSpiderBotHtmlDocument.Helpers
         public SeleniumHelper(int waitSeconds = 10, bool headless = false)
         {
             _waitSeconds = waitSeconds;
-            //var chromeDriverPath = AppDomain.CurrentDomain.BaseDirectory;
-            //string driverPath = Path.Combine(chromeDriverPath, "chromedriver.exe");
-            //var driverService = ChromeDriverService.CreateDefaultService(chromeDriverPath);
+            var chromeDriverPath = AppDomain.CurrentDomain.BaseDirectory;
+            string driverPath = Path.Combine(chromeDriverPath, "chromedriver.exe");
+            var driverService = ChromeDriverService.CreateDefaultService(chromeDriverPath);
             var options = new ChromeOptions();
             options.AddUserProfilePreference("profile.default_content_setting_values.notifications", 2);
             options.AddUserProfilePreference("profile.default_content_setting_values.geolocation", 2); // 禁用地理位置請求
